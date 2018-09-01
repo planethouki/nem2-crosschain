@@ -1,8 +1,32 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-var jQuery = require("jquery");
+const jQuery = require("jquery");
 
 (function($){
-    $("#container").text("require is work!");
+    $("#debug").text("loading!");
+    $("#lock").submit((event) => {
+        event.preventDefault();
+        $("input[name=submit]").attr('disabled', true).addClass("_disabled").removeClass("_primary");
+        $("#progress").removeClass("_is-invisible");
+    });
+    $("input[name=addressFrom]").blur((event) => {
+        let address = event.target.value.split("-").join("");
+        if (address.length === 40) {
+            const networkFrom = $("input[name=networkFrom]").val();
+            $.ajax({
+                type: "GET",
+                url: networkFrom + "/account/" + address,
+                success: (data) => {
+                    $("#pubkeyFrom").text(data.account.publicKey);
+                },
+                error: (error) => {
+                    $("#pubkeyFrom").empty();
+                    console.log(error);
+                }
+            })
+        } else {
+            $("#pubkeyFrom").empty();
+        }
+    })
 })(jQuery);
 },{"jquery":2}],2:[function(require,module,exports){
 /*!

@@ -1,0 +1,24 @@
+doctype html
+html
+    head(prefix='og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#')
+        meta(charset='utf-8')
+        meta(content='yes' name='apple-mobile-web-app-capable')
+        meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport')
+        meta(content='website' property='og:type')
+        meta(content='http://test-catapult-faucet.44uk.net/images/ogimage.png' property='og:image')
+        meta(content='Catapult Crosschain' property='og:title')
+        meta(content='Catapult Crosschain' property='og:site_name')
+        meta(content='Catapult Crosschain' property='og:description')
+        meta(content='Catapult Crosschain' name='description')
+        title Catapult Crosschain
+        link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic')
+        link(rel='stylesheet' type="text/css" href='/css/beauter.min.css')
+        link(rel='shortcut icon' href='/favicon.ico' type='image/x-icon')
+        link(rel='apple-touch-icon' href='/icon.png' sizes='180x180' type='image/x-icon')
+        link(rel='icon' href='/images/favicon-32x32.png' sizes='32x32' type='image/png')
+        link(rel='icon' href='/images/favicon-16x16.png' sizes='16x16' type='image/png')
+        link(rel='icon' href='/images/android-icon-192x192.png' sizes='192x192' type='image/png')
+    body
+        include _header
+        block content
+        include _footer

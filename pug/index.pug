@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    div#debug
+    .container
+        .row
+            form#lock
+                fieldset(style="margin-bottom:20px;")._cream
+                    div
+                        label Network You Send XEM
+                        input._width100(type="text" name="networkFrom" placeholder="Url start with http(s)" pattern="^http?://.+" title="Url start with http(s)" required readonly value="http://catapult-test.44uk.net:3000")
+                    .row
+                        div.off1-5
+                            label Your Address
+                                span(style="color:red;") &nbsp;*
+                            input._width100(type="text" name="addressFrom" placeholder="Address start with a capital S" pattern="^S.+$" title="catapult address start with a capital S" required autofocus)
+                            div#pubkeyFrom._xsmall
+                        div.off1-5
+                            label Server Address
+                            input._width100(type="text" value="SBWEUW-ON6IBH-CW5IC4-EI6V6S-MTVJGC-JWGLF5-7UGK" readonly)
+                fieldset(style="margin-bottom:20px;")
+                    div
+                        label Amount
+                        input._width100(type="number" name="amount" placeholder="Default is 10" min="0" max="1500" step="0.05")
+                fieldset(style="margin-bottom:20px;")._cream
+                    div
+                        label Network You Receive XEM
+                        input._width100(type="text" name="networkTo" placeholder="Url start with http(s)" pattern="^http?://.+" title="Url start with http(s)" required readonly value="http://catapult48gh23s.xyz:3000")
+                    .-content
+                        div.off1-5
+                            label Server Address
+                            input._width100(type="text" value="SBNRDT-MZ3MF4-RFNQA2-ZA33G7-4EGTIN-CKX2EH-YYHY" readonly)
+                        div.off1-5
+                            label Your Address
+                                span(style="color:red;") &nbsp;*
+                            input._width100(type="text" name="addressTo" placeholder="Address start with a capital S" pattern="^S.+$" title="address start with a capital S" required autofocus)
+                .raw
+                    .col.m3
+                        input(type="submit" name="submit" value="submit")._primary._width100
+                    .col.m1
+                        img(src="/img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress
+
+    script(src="/js/beauter.min.js")
+    script(src="/js/main.js")

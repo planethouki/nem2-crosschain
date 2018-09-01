@@ -1,22 +1,23 @@
 {
   "name": "nem2-crosschain",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "gulp build",
     "serve": "gulp serve",
     "watch": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "planethouki",
+  "license": "Apache-2.0",
   "dependencies": {
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "nem2-sdk": "^0.10.1"
   },
   "devDependencies": {
     "browserify": "^16.2.2",
     "gulp": "^3.9.1",
+    "pug": "^2.0.3",
     "superstatic": "^6.0.1"
   }
 }
