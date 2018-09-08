@@ -1,66 +1,145 @@
 extends layout
 
 block content
-    div#debug
-    .container
-        .row
-            form#lock
-                fieldset(style="margin-bottom:20px;")._cream
-                    div
-                        label Network You Send XEM
-                        input._width100(type="text" name="networkFrom" placeholder="Url start with http(s)" pattern="^http?://.+" title="Url start with http(s)" required readonly value="http://catapult-test.44uk.net:3000")
+    ._margin-bottom50
+    .container._margin-bottom50
+        h2 Step1 &nbsp;
+            small Prepare for swap
+        .row(style="margin-bottom:20px;") some explanation
+        form#lock
+            .row._margin-bottom20
+                .row
+                    label Your address your will send
+                        span(style="color:red;") &nbsp;*
+                    input._width100(type="text" name="addressFrom" placeholder="Address start with a capital S" pattern="^S.+$" title="catapult address start with a capital S" required autofocus)
+                .row.off-1
                     .row
-                        div.off1-5
-                            label Your Address
-                                span(style="color:red;") &nbsp;*
-                            input._width100(type="text" name="addressFrom" placeholder="Address start with a capital S" pattern="^S.+$" title="catapult address start with a capital S" required autofocus)
-                            div#pubkeyFrom._xsmall
-                        div.off1-5
-                            label Server Address
-                            input._width100(type="text" value="SBNRDT-MZ3MF4-RFNQA2-ZA33G7-4EGTIN-CKX2EH-YYHY" readonly)
-                fieldset(style="margin-bottom:20px;")
-                    div
-                        label Swap Amount
-                        input._width100(type="number" name="amount" placeholder="Default is 10" min="0" max="1500" step="0.05")
-                fieldset(style="margin-bottom:20px;")._cream
-                    div
-                        label Network You Receive XEM
-                        input._width100(type="text" name="networkTo" placeholder="Url start with http(s)" pattern="^http?://.+" title="Url start with http(s)" required readonly value="http://catapult48gh23s.xyz:3000")
-                    .-content
-                        div.off1-5
-                            label Server Address
-                            input._width100(type="text" value="SBWEUW-ON6IBH-CW5IC4-EI6V6S-MTVJGC-JWGLF5-7UGK" readonly)
-                        div.off1-5
-                            label Your Address
-                                span(style="color:red;") &nbsp;*
-                            input._width100(type="text" name="addressTo" placeholder="Address start with a capital S" pattern="^S.+$" title="address start with a capital S" required autofocus)
+                        .m2.col._noPadding
+                            span Network
+                        .m10.col._noPadding
+                            span http://catapult-test.44uk.net:3000
+                    .row
+                        .m2.col._noPadding
+                            span Recipient
+                        .m10.col._noPadding
+                            span SBNRDT-MZ3MF4-RFNQA2-ZA33G7-4EGTIN-CKX2EH-YYHY
+                    .row
+                        .m2.col._noPadding
+                            span Your public key &nbsp;
+                        .m10.col._noPadding
+                            span#pubkeyFrom please input your address
+            .row._margin-bottom20
+                .row
+                    label Swap Amount
+                    input._width100(type="number" name="amountFrom" placeholder="Default is 10" min="0" max="1500" step="0.05")
+            .row._margin-bottom20
+                .row
+                    label Your address you will receive
+                        span(style="color:red;") &nbsp;*
+                    input._width100(type="text" name="addressTo" placeholder="Address start with a capital S" pattern="^S.+$" title="address start with a capital S" required autofocus)
+                .row.off-1
+                    .row
+                        .m2.col._noPadding
+                            span Network
+                        .m10.col._noPadding
+                            span http://catapult48gh23s.xyz:3000
+                    .row
+                        .m2.col._noPadding
+                            span Sender
+                        .m10.col._noPadding
+                            span SBWEUW-ON6IBH-CW5IC4-EI6V6S-MTVJGC-JWGLF5-7UGK
+            .raw._margin-bottom20
+                .col.m5
+                    input(type="submit" name="lock" value="Prepare OK")._primary._width100
+                .col.m1
+                    img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_lock
+    .container._margin-bottom50
+        h2 Step2 &nbsp;
+            small Check & Cogisn Tx
+        .row(style="margin-bottom:20px;") some explanation
+        form#proof
+            .raw._margin-bottom20
+                .row
+                    label Transaction hash you will send,
+                        span(style="color:red;") &nbsp; need cosign
+                    input(type="text" name="tx2pubHash" readonly)._width100
+                .row.off-1
+                    .row
+                        .m2.col._noPadding
+                            span Network
+                        .m10.col._noPadding
+                            span http://catapult-test.44uk.net:3000
+                    .row
+                        .m2.col._noPadding
+                            span Show tx
+                        .m10.col._noPadding
+                            a#tx2pubPartial(target="_blank") partial
+                            span &nbsp;
+                            a#tx2pubStatus(target="_blank") status
+                            span &nbsp;
+                            a#tx2pubDetail(target="_blank") detail
+            .raw._margin-bottom20
                 .raw
-                    .col.m3
-                        input(type="submit" name="lock" value="submit")._primary._width100
-                    .col.m1
-                        img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_lock
-    .container
-        .row
-            form#cosign
-                fieldset(style="margin-bottom:20px;")
-                    label You should cosign this transaction
-                    input(type="text" name="secret_lock_tx_hash")._width100
-                .raw
-                    .col.m3
-                        input(type="submit" name="cosign" value="submit")._primary._width100
-                    .col.m1
-                        img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_cosign
-    .container
-        .row
-            form#proof
-                fieldset(style="margin-bottom:20px;")
-                    label proof
-                    input(type="text" name="secret")._width100
-                .raw
-                    .col.m3
-                        input(type="submit" name="proof" value="submit")._primary._width100
+                    label Transaction hash you will receive
+                    input(type="text" name="tx1privHash" readonly)._width100
+                .row.off-1
+                    .row
+                        .m2.col._noPadding
+                            span Network
+                        .m10.col._noPadding
+                            span http://catapult48gh23s.xyz:3000
+                    .row
+                        .m2.col._noPadding
+                            span Show tx
+                        .m10.col._noPadding
+                            a#tx1privStatus(target="_blank") status
+                            span &nbsp;
+                            a#tx1privDetail(target="_blank") detail
+            .row._margin-bottom20
+                .row
+                    label target secret
+                    input(type="text" name="secret" readonly)._width100
+                .row
+                    .col.m5
+                        input(type="submit" name="proof" value="Check & Cogisn OK")._primary._width100
                     .col.m1
                         img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_proof
+    .container._margin-bottom50
+        h2 Step3 &nbsp;
+            small Verify Swap
+        .row._margin-bottom20 some explanation
+        .row._margin-bottom20.off-1
+            .row
+                .m2.col._noPadding
+                    span Proof
+                .m10.col._noPadding
+                    span#showproof
+        .row._margin-bottom20.off-1
+            .row
+                .m2.col._noPadding
+                    span Network
+                .m10.col._noPadding
+                    span http://catapult-test.44uk.net:3000
+            .row
+                .m2.col._noPadding
+                    span Show tx
+                .m10.col._noPadding
+                    a#tx3pubStatus(target="_blank") status
+                    span &nbsp;
+                    a#tx3pubDetail(target="_blank") detail
+        .row._margin-bottom20.off-1
+            .row
+                .m2.col._noPadding
+                    span Network
+                .m10.col._noPadding
+                    span http://catapult48gh23s.xyz:3000
+            .row
+                .m2.col._noPadding
+                    span Show tx
+                .m10.col._noPadding
+                    a#tx4privStatus(target="_blank") satus
+                    span &nbsp;
+                    a#tx4privDetail(target="_blank") detail
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
     script(src="js/beauter.min.js")
