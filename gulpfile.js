@@ -1,27 +1,21 @@
 const gulp = require("gulp");
-const browserify = require("browserify");
 const fs = require("fs");
 const superstatic = require('superstatic');
 const pug = require('pug');
 
-gulp.task("build", function() {
-    const out = fs.createWriteStream('./js/main.js');
-    browserify({
-        entries: ['./js/main.src.js']
-    })
-    .bundle()
-    .pipe(out);
-
+gulp.task("build", function(done) {
     const rawHtml = pug.renderFile('./pug/index.pug');
     fs.writeFileSync('./index.html', rawHtml);
+    done();
 });
 
-gulp.task("serve", 　["build"], function () {
+gulp.task('serve', function(){
     superstatic.server({
         port:3000
     }).listen();
 });
 
-gulp.task("watch", 　["serve"], function () {
-    gulp.watch(["./js/main.src.js", "./pug/index.pug"], ["build"]);
-});
+
+gulp.task('watch', gulp.parallel( gulp.task('serve'), function(){
+    gulp.watch(["./pug/index.pug"], gulp.task("build"));
+}));
