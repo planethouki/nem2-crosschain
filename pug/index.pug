@@ -5,7 +5,12 @@ block content
     .container._margin-bottom50
         h2 Step1 &nbsp;
             small Prepare for swap
-        .row(style="margin-bottom:20px;") some explanation
+        .row(style="margin-bottom:20px;")
+            p Secret Lockトランザクションを作ります。
+            p ひとつ目の欄には、あなたが支払いを行いたいアドレスを入力してください。このアドレスに対して、支払い請求のAggregate Bondedトランザクションを発行します。それに際して、あなたの公開鍵が必要になります。これはブロックチェーンから自動的に取得するようになっています。しかし、一度もトランザクションを発行していないアカウントに関しては、取得することができません。また、公開鍵の自動取得には、とても時間がかかります（30秒くらい）。
+            p ふたつ目の欄には、交換したいXEMの量を記入してください。将来的には、決められたレートでのモザイク交換も実装するかもしれません。
+            p みっつ目の欄には、あなたが受け取りを行うアドレスを入力してください。
+            p アドレスを入力し、公開鍵の取得が完了したら、Prepare OKのボタンを押してください。Secret Lockトランザクションが作成されアナウンスされます。時間がかかります（60秒くらい）。
         form#lock
             .row._margin-bottom20
                 .row
@@ -25,7 +30,8 @@ block content
                             span SBNRDT-MZ3MF4-RFNQA2-ZA33G7-4EGTIN-CKX2EH-YYHY
                     .row
                         .m2.col._noPadding
-                            span Your public key &nbsp;
+                            span Your public key
+                                span(style="color:red;") &nbsp;*
                         .m10.col._noPadding
                             span#pubkeyFrom please input your address
             .row._margin-bottom20
@@ -55,8 +61,12 @@ block content
                     img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_lock
     .container._margin-bottom50
         h2 Step2 &nbsp;
-            small Check & Cogisn Tx
-        .row(style="margin-bottom:20px;") some explanation
+            small Check & Cosign Tx
+        .row._margin-bottom20
+            p Secret Proofトランザクションを作ります。
+            p 発行されたSecret Lockの内容を確認してください。
+            p ひとつ目の欄に表示されているTransaction HashにCosignしてください。
+            p Cosignが完了し、Confirmedになったら、Check & Cosign OKのボタンを押してください。Secret Proofトランザクションが作成されアナウンスされます。
         form#proof
             .raw._margin-bottom20
                 .row
@@ -101,13 +111,14 @@ block content
                     input(type="text" name="secret" readonly)._width100
                 .row
                     .col.m5
-                        input(type="submit" name="proof" value="Check & Cogisn OK")._primary._width100
+                        input(type="submit" name="proof" value="Check & Cosign OK")._primary._width100
                     .col.m1
                         img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_proof
     .container._margin-bottom50
         h2 Step3 &nbsp;
             small Verify Swap
-        .row._margin-bottom20 some explanation
+        .row._margin-bottom20
+            p アナウンスされたSecret Proofトランザクションを確認してください。
         .row._margin-bottom20.off-1
             .row
                 .m2.col._noPadding

@@ -60,12 +60,17 @@
     $("input[name=addressFrom]").blur((event) => {
         let address = event.target.value.split("-").join("");
         if (address.length === 40) {
-            const networkFrom = $("input[name=networkFrom]").val() || "http://catapult-test.44uk.net:3000";
+            let postData = {
+                address: address
+            };
             $.ajax({
-                type: "GET",
-                url: networkFrom + "/account/" + address,
+                type: "POST",
+                url: "https://atomicswap48gh23s.azurewebsites.net/api/publickey",
+                contentType: "application/json",
+                data: JSON.stringify(postData),
+                dataType: "json",
                 success: (data) => {
-                    $("#pubkeyFrom").text(data.account.publicKey);
+                    $("#pubkeyFrom").text(data.publicKey);
                 },
                 error: (error) => {
                     $("#pubkeyFrom").text("can not get publick key from blockchain");
