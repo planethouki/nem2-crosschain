@@ -5,9 +5,13 @@ block content
     .container._margin-bottom50
         h2 Step1 &nbsp;
             small Prepare for swap
-        .row(style="margin-bottom:20px;")
-            p Secret Lockトランザクションを作ります。
-            p ひとつ目の欄には、あなたが支払いを行いたいアドレスを入力してください。このアドレスに対して、支払い請求のAggregate Bondedトランザクションを発行します。それに際して、あなたの公開鍵が必要になります。これはブロックチェーンから自動的に取得するようになっています。しかし、一度もトランザクションを発行していないアカウントに関しては、取得することができません。また、公開鍵の自動取得には、とても時間がかかります（30秒くらい）。
+        .row._margin-bottom20
+            p First column, enter the address you will send. For the address, this server announces aggregate bonded transaction (The inner is secret lock transactions).　In order to do this, your public key is required. It is designed to get the public key automatically from the block chain. However, we can not get accounts that have never sent transactions. Also, it takes a very long time to automatically obtain the public key (abount 30 seconds).
+            p Second column, fill in the amount of XEM you want to exchange. In future, it may also implement mosaic exchange at a fixed rate.
+            p Third column, Please enter the address you will receive.
+            p After entering the address and the obtainment of the public key, press the “Prepare OK” button. Secret Lock transactions are created and announced. It takes time (about 60 seconds).
+        .row._margin-bottom20
+            p ひとつ目の欄には、あなたが支払いを行いたいアドレスを入力してください。このアドレスに対して、支払い請求のAggregate Bondedトランザクションを発行します（中身はSecret Lockトランザクションです）。それに際して、あなたの公開鍵が必要になります。これはブロックチェーンから自動的に取得するようになっています。しかし、一度もトランザクションを発行していないアカウントに関しては、取得することができません。また、公開鍵の自動取得には、とても時間がかかります（30秒くらい）。
             p ふたつ目の欄には、交換したいXEMの量を記入してください。将来的には、決められたレートでのモザイク交換も実装するかもしれません。
             p みっつ目の欄には、あなたが受け取りを行うアドレスを入力してください。
             p アドレスを入力し、公開鍵の取得が完了したら、Prepare OKのボタンを押してください。Secret Lockトランザクションが作成されアナウンスされます。時間がかかります（60秒くらい）。
@@ -16,21 +20,21 @@ block content
                 .row
                     label Your address your will send
                         span(style="color:red;") &nbsp;*
-                    input._width100(type="text" name="addressFrom" placeholder="Address start with a capital S" pattern="^S.+$" title="catapult address start with a capital S" required autofocus)
+                    input._width100(type="text" name="addressFrom" placeholder="Address start with a capital S" pattern="^S.+$" title="catapult address start with a capital S" required)
                 .row.off-1
                     .row
                         .m2.col._noPadding
-                            span Network
+                            span._bold Network
                         .m10.col._noPadding
                             span http://catapult-test.44uk.net:3000
                     .row
                         .m2.col._noPadding
-                            span Recipient
+                            span._bold Recipient
                         .m10.col._noPadding
                             span SBNRDT-MZ3MF4-RFNQA2-ZA33G7-4EGTIN-CKX2EH-YYHY
                     .row
                         .m2.col._noPadding
-                            span Your public key
+                            span._bold Your public key
                                 span(style="color:red;") &nbsp;*
                         .m10.col._noPadding
                             span#pubkeyFrom please input your address
@@ -42,16 +46,16 @@ block content
                 .row
                     label Your address you will receive
                         span(style="color:red;") &nbsp;*
-                    input._width100(type="text" name="addressTo" placeholder="Address start with a capital S" pattern="^S.+$" title="address start with a capital S" required autofocus)
+                    input._width100(type="text" name="addressTo" placeholder="Address start with a capital S" pattern="^S.+$" title="address start with a capital S" required)
                 .row.off-1
                     .row
                         .m2.col._noPadding
-                            span Network
+                            span._bold Network
                         .m10.col._noPadding
                             span http://catapult48gh23s.xyz:3000
                     .row
                         .m2.col._noPadding
-                            span Sender
+                            span._bold Sender
                         .m10.col._noPadding
                             span SBWEUW-ON6IBH-CW5IC4-EI6V6S-MTVJGC-JWGLF5-7UGK
             .raw._margin-bottom20
@@ -63,9 +67,12 @@ block content
         h2 Step2 &nbsp;
             small Check & Cosign Tx
         .row._margin-bottom20
-            p Secret Proofトランザクションを作ります。
-            p 発行されたSecret Lockの内容を確認してください。
-            p ひとつ目の欄に表示されているTransaction HashにCosignしてください。
+            p Click the link of “Show tx” and check the contents of announced Secret Lock transaction.
+            p Cosign the transaction displayed in the first column.
+            p When cosignature is completed and it becomes confirmed, push the button of “Check & Cosign OK”. Secret proof transactions are created and announced.
+        .row._margin-bottom20
+            p Show txの箇所のリンクをクリックし、発行されたSecret Lockトランザクションの内容を確認してください。
+            p ひとつ目の欄に表示されているトランザクションにCosignしてください。
             p Cosignが完了し、Confirmedになったら、Check & Cosign OKのボタンを押してください。Secret Proofトランザクションが作成されアナウンスされます。
         form#proof
             .raw._margin-bottom20
@@ -76,12 +83,12 @@ block content
                 .row.off-1
                     .row
                         .m2.col._noPadding
-                            span Network
+                            span._bold Network
                         .m10.col._noPadding
                             span http://catapult-test.44uk.net:3000
                     .row
                         .m2.col._noPadding
-                            span Show tx
+                            span._bold Show tx
                         .m10.col._noPadding
                             a#tx2pubPartial(target="_blank") partial
                             span &nbsp;
@@ -95,12 +102,12 @@ block content
                 .row.off-1
                     .row
                         .m2.col._noPadding
-                            span Network
+                            span._bold Network
                         .m10.col._noPadding
                             span http://catapult48gh23s.xyz:3000
                     .row
                         .m2.col._noPadding
-                            span Show tx
+                            span._bold Show tx
                         .m10.col._noPadding
                             a#tx1privStatus(target="_blank") status
                             span &nbsp;
@@ -118,22 +125,26 @@ block content
         h2 Step3 &nbsp;
             small Verify Swap
         .row._margin-bottom20
-            p アナウンスされたSecret Proofトランザクションを確認してください。
+            p Click the link on “Show tx” and verify the contents of the announced secret proof transactions.
+            p If both are confirmed, atomic swap is successful. If both of them fail, your asset will not be lost (the administrator of this site may lose assets for lock funds transaction).
+        .row._margin-bottom20
+            p Show txの箇所のリンクをクリックし、発行されたSecret Proofトランザクションの内容を確認してください。
+            p ２つともconfirmedになっていれば、Swap成功です。もし２つとも失敗していれば、あなたの資産が失われることはありません（このサイトの運営者はLock Fundsトランザクション分の資産を失うかもしれません）。
         .row._margin-bottom20.off-1
             .row
                 .m2.col._noPadding
-                    span Proof
+                    span._bold Proof
                 .m10.col._noPadding
                     span#showproof
         .row._margin-bottom20.off-1
             .row
                 .m2.col._noPadding
-                    span Network
+                    span._bold Network
                 .m10.col._noPadding
                     span http://catapult-test.44uk.net:3000
             .row
                 .m2.col._noPadding
-                    span Show tx
+                    span._bold Show tx
                 .m10.col._noPadding
                     a#tx3pubStatus(target="_blank") status
                     span &nbsp;
@@ -141,16 +152,30 @@ block content
         .row._margin-bottom20.off-1
             .row
                 .m2.col._noPadding
-                    span Network
+                    span._bold Network
                 .m10.col._noPadding
                     span http://catapult48gh23s.xyz:3000
             .row
                 .m2.col._noPadding
-                    span Show tx
+                    span._bold Show tx
                 .m10.col._noPadding
                     a#tx4privStatus(target="_blank") satus
                     span &nbsp;
                     a#tx4privDetail(target="_blank") detail
+    .container._margin-bottom50
+        h2 Refference &nbsp;
+        .row
+            ul
+                li
+                    a(href="https://github.com/planethouki/nem2-crosschain" target="_blank") Github
+                li
+                    a(href="https://github.com/planethouki/nem2-crosschain-api" target="_blank") Github (API)
+                li
+                    a(href="https://twitter.com/planethouki" target="_blank") Twitter @planethouki
+    .container._margin-bottom50
+        h2 Diagram &nbsp;
+        .row
+            img(src="https://raw.githubusercontent.com/planethouki/images/master/nem2-crosschain/atomicswap-deposit.png")
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
     script(src="js/beauter.min.js")
