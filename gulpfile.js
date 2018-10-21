@@ -17,5 +17,5 @@ gulp.task('serve', function(){
 
 
 gulp.task('watch', gulp.parallel( gulp.task('serve'), function(){
-    gulp.watch(["./pug/index.pug"], gulp.task("build"));
+    gulp.watch(["./pug/index.pug", "./pug/layout.pug"], gulp.task("build"));
 }));

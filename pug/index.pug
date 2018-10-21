@@ -2,19 +2,12 @@ extends layout
 
 block content
     ._margin-bottom50
-    .container._margin-bottom50
+    .container._margin-bottom50#prepare
         h2 Step1 &nbsp;
             small Prepare for swap
         .row._margin-bottom20
-            p First column, enter the address you will send. For the address, this server announces aggregate bonded transaction (The inner is secret lock transactions).　In order to do this, your public key is required. It is designed to get the public key automatically from the block chain. However, we can not get accounts that have never sent transactions. Also, it takes a very long time to automatically obtain the public key (abount 30 seconds).
-            p Second column, fill in the amount of XEM you want to exchange. In future, it may also implement mosaic exchange at a fixed rate.
-            p Third column, Please enter the address you will receive.
-            p After entering the address and the obtainment of the public key, press the “Prepare OK” button. Secret Lock transactions are created and announced. It takes time (about 60 seconds).
-        .row._margin-bottom20
-            p ひとつ目の欄には、あなたが支払いを行いたいアドレスを入力してください。このアドレスに対して、支払い請求のAggregate Bondedトランザクションを発行します（中身はSecret Lockトランザクションです）。それに際して、あなたの公開鍵が必要になります。これはブロックチェーンから自動的に取得するようになっています。しかし、一度もトランザクションを発行していないアカウントに関しては、取得することができません。また、公開鍵の自動取得には、とても時間がかかります（30秒くらい）。
-            p ふたつ目の欄には、交換したいXEMの量を記入してください。将来的には、決められたレートでのモザイク交換も実装するかもしれません。
-            p みっつ目の欄には、あなたが受け取りを行うアドレスを入力してください。
-            p アドレスを入力し、公開鍵の取得が完了したら、Prepare OKのボタンを押してください。Secret Lockトランザクションが作成されアナウンスされます。時間がかかります（60秒くらい）。
+            button.accordion._small explanation
+            .description.-panel
         form#lock
             .row._margin-bottom20
                 .row
@@ -63,17 +56,12 @@ block content
                     input(type="submit" name="lock" value="Prepare OK")._primary._width100
                 .col.m1
                     img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_lock
-    .container._margin-bottom50
+    .container._margin-bottom50#cosign
         h2 Step2 &nbsp;
             small Check & Cosign Tx
         .row._margin-bottom20
-            p Click the link of “Show tx” and check the contents of announced Secret Lock transaction.
-            p Cosign the transaction displayed in the first column.
-            p When cosignature is completed and it becomes confirmed, push the button of “Check & Cosign OK”. Secret proof transactions are created and announced.
-        .row._margin-bottom20
-            p Show txの箇所のリンクをクリックし、発行されたSecret Lockトランザクションの内容を確認してください。
-            p ひとつ目の欄に表示されているトランザクションにCosignしてください。
-            p Cosignが完了し、Confirmedになったら、Check & Cosign OKのボタンを押してください。Secret Proofトランザクションが作成されアナウンスされます。
+            button.accordion._small explanation
+            .description.-panel
         form#proof
             .raw._margin-bottom20
                 .row
@@ -121,15 +109,12 @@ block content
                         input(type="submit" name="proof" value="Check & Cosign OK")._primary._width100
                     .col.m1
                         img(src="img/sozai_cman_jp_30.gif")._inline-block._is-invisible#progress_proof
-    .container._margin-bottom50
+    .container._margin-bottom50#verify
         h2 Step3 &nbsp;
             small Verify Swap
         .row._margin-bottom20
-            p Click the link on “Show tx” and verify the contents of the announced secret proof transactions.
-            p If both are confirmed, atomic swap is successful. If both of them fail, your asset will not be lost (the administrator of this site may lose assets for lock funds transaction).
-        .row._margin-bottom20
-            p Show txの箇所のリンクをクリックし、発行されたSecret Proofトランザクションの内容を確認してください。
-            p ２つともconfirmedになっていれば、Swap成功です。もし２つとも失敗していれば、あなたの資産が失われることはありません（このサイトの運営者はLock Fundsトランザクション分の資産を失うかもしれません）。
+            button.accordion._small explanation
+            .description.-panel
         .row._margin-bottom20.off-1
             .row
                 .m2.col._noPadding
@@ -177,6 +162,3 @@ block content
         .row
             img(src="https://raw.githubusercontent.com/planethouki/images/master/nem2-crosschain/atomicswap-deposit.png")
 
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
-    script(src="js/beauter.min.js")
-    script(src="js/main.js")

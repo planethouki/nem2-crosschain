@@ -10,7 +10,28 @@
         error: (error) => {
             console.log(error);
         }
-    })
+    });
+
+    const browserLanguage = (window.navigator.languages && window.navigator.languages[0]) ||
+        window.navigator.language ||
+        window.navigator.userLanguage ||
+        window.navigator.browserLanguage;
+
+    const setLang = function(data) {
+        const paragraphed = function (array) {
+            return array.map((line) => {
+                return "<p>" + line + "</p>";
+            }).join("");
+        };
+        $("#prepare .description").html(paragraphed(data.prepare));
+        $("#cosign .description").html(paragraphed(data.cosign));
+        $("#verify .description").html(paragraphed(data.verify));
+    };
+    if (browserLanguage === "ja") {
+        $.getJSON("/lang/ja.json", setLang);
+    } else {
+        $.getJSON("/lang/en.json", setLang);
+    }
 })();
 
 // lock
